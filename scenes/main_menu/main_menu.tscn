@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bfyicgcqveqmo"]
 
-[ext_resource type="FontFile" uid="uid://bkfafamw1lg85" path="res://assets/fonts/wdxl_lubrifont_jpn/wdxl_lubrifont_jpn_regular.ttf" id="1_rm437"]
+[ext_resource type="FontFile" uid="uid://bkfafamw1lg85" path="res://assets/fonts/wdxl_lubrifont_jpn/wdxl_lubrifont_jpn_regular.ttf" id="1_fsom3"]
 
 [node name="MainMenu" type="Control" unique_id=705006943]
 layout_mode = 3
@@ -33,6 +33,6 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=932145211]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_fonts/font = ExtResource("1_rm437")
+theme_override_fonts/font = ExtResource("1_fsom3")
 theme_override_font_sizes/font_size = 100
 text = "orochi"
