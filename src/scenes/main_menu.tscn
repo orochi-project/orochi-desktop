@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bfyicgcqveqmo"]
 
+[ext_resource type="FontFile" uid="uid://bkfafamw1lg85" path="res://assets/fonts/wdxl_lubrifont_jpn/wdxl_lubrifont_jpn_regular.ttf" id="1_rm437"]
+
 [node name="MainMenu" type="Control" unique_id=705006943]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +9,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1618765769]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1441842886]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1641730836]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=932145211]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_rm437")
+theme_override_font_sizes/font_size = 100
+text = "orochi"
