@@ -26,6 +26,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="orochi"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -34,4 +38,3 @@ project/assembly_name="orochi"
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
-viewport/hdr_2d=true

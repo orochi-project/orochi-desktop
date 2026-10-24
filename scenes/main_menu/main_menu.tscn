@@ -1,11 +1,19 @@
 [gd_scene format=3 uid="uid://bfyicgcqveqmo"]
 
+[ext_resource type="Texture2D" uid="uid://clxlbx5r0phw8" path="res://assets/images/backgrounds/main_menu/layer_0004_sky.png" id="1_3ovsr"]
+[ext_resource type="Script" uid="uid://b7vy56662fenp" path="res://scenes/main_menu/background_node_2d.gd" id="1_5seab"]
 [ext_resource type="FontFile" uid="uid://bkfafamw1lg85" path="res://assets/fonts/wdxl_lubrifont_jpn/wdxl_lubrifont_jpn_regular.ttf" id="1_fsom3"]
+[ext_resource type="Texture2D" uid="uid://cd4lc6b380rsf" path="res://assets/images/backgrounds/main_menu/layer_0003_background_smoke.png" id="4_lqpn7"]
+[ext_resource type="Texture2D" uid="uid://c1x1uk8kcgyeu" path="res://assets/images/backgrounds/main_menu/layer_0002_mountains.png" id="5_qel0l"]
+[ext_resource type="Texture2D" uid="uid://bimyp0s1n3ttg" path="res://assets/images/backgrounds/main_menu/layer_0001_atmosphere.png" id="6_rrgl4"]
+[ext_resource type="Texture2D" uid="uid://bogpvr1i6vkgv" path="res://assets/images/backgrounds/main_menu/layer_0000_foreground_clouds.png" id="7_dn3lk"]
 
 [sub_resource type="Environment" id="Environment_myi6a"]
 background_mode = 3
 glow_enabled = true
+glow_strength = 1.25
 glow_blend_mode = 0
+glow_hdr_threshold = 0.0
 
 [node name="MainMenu" type="Control" unique_id=705006943]
 layout_mode = 3
@@ -15,38 +23,95 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TitleVBoxContainer" type="VBoxContainer" parent="." unique_id=797584307]
-modulate = Color(1.4586968, 1.4586968, 1.4586968, 1)
-layout_mode = 1
+[node name="BackgroundNode2D" type="Node2D" parent="." unique_id=2008775116]
+script = ExtResource("1_5seab")
+mouse_strengths = Array[float]([4.0, 8.0, 16.0, 24.0, 32.0, 64.0])
+smoothness = 1.0
+
+[node name="SkyParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=24174464]
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/SkyParallax2D" unique_id=233159531]
+texture_repeat = 3
+position = Vector2(-1920, -1080)
+texture = ExtResource("1_3ovsr")
+centered = false
+region_enabled = true
+region_rect = Rect2(-1920, -1080, 5760, 3240)
+
+[node name="BackgroundSmokeParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=2086292005]
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/BackgroundSmokeParallax2D" unique_id=1481687629]
+texture_repeat = 3
+position = Vector2(-1920, -1080)
+texture = ExtResource("4_lqpn7")
+centered = false
+region_enabled = true
+region_rect = Rect2(-1920, -1080, 5760, 3240)
+
+[node name="TitleParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=47627433]
+
+[node name="TitleVBoxContainer" type="VBoxContainer" parent="BackgroundNode2D/TitleParallax2D" unique_id=797584307]
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -787.0
-offset_top = -176.0
-offset_right = -378.0
-offset_bottom = 176.0
+offset_left = 1133.0
+offset_top = 364.0
+offset_right = 1542.0
+offset_bottom = 716.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = -104
 
-[node name="KanjiTitleLabel" type="Label" parent="TitleVBoxContainer" unique_id=874455886]
+[node name="KanjiTitleLabel" type="Label" parent="BackgroundNode2D/TitleParallax2D/TitleVBoxContainer" unique_id=874455886]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.99215686, 0.9411765, 0.8352941, 1)
 theme_override_fonts/font = ExtResource("1_fsom3")
 theme_override_font_sizes/font_size = 192
 text = "大蛇"
 justification_flags = 131
 
-[node name="RomajiTitleLabel" type="Label" parent="TitleVBoxContainer" unique_id=932145211]
+[node name="RomajiTitleLabel" type="Label" parent="BackgroundNode2D/TitleParallax2D/TitleVBoxContainer" unique_id=932145211]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.972549, 0.9137255, 1)
 theme_override_fonts/font = ExtResource("1_fsom3")
 theme_override_font_sizes/font_size = 192
 text = "orochi"
+
+[node name="MountainsParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=733701150]
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/MountainsParallax2D" unique_id=1232550868]
+texture_repeat = 3
+position = Vector2(-1920, -1080)
+texture = ExtResource("5_qel0l")
+centered = false
+region_enabled = true
+region_rect = Rect2(-1920, -1080, 5760, 3240)
+
+[node name="AtmosphereParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=160772828]
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/AtmosphereParallax2D" unique_id=1635008927]
+texture_repeat = 3
+position = Vector2(-1920, -1080)
+texture = ExtResource("6_rrgl4")
+centered = false
+region_enabled = true
+region_rect = Rect2(-1920, -1080, 5760, 3240)
+
+[node name="ForegroundCloudsParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=429256941]
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/ForegroundCloudsParallax2D" unique_id=1681658798]
+texture_repeat = 3
+position = Vector2(-1920, -1080)
+texture = ExtResource("7_dn3lk")
+centered = false
+region_enabled = true
+region_rect = Rect2(-1920, -1080, 5760, 3240)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=274927699]
 environment = SubResource("Environment_myi6a")
