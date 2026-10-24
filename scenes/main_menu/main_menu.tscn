@@ -25,7 +25,7 @@ grow_vertical = 2
 
 [node name="BackgroundNode2D" type="Node2D" parent="." unique_id=2008775116]
 script = ExtResource("1_5seab")
-mouse_strengths = Array[float]([4.0, 8.0, 16.0, 24.0, 32.0, 64.0])
+mouse_strengths = Array[float]([4.0, 8.0, 16.0, 24.0, 32.0, 48.0])
 smoothness = 1.0
 
 [node name="SkyParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=24174464]
@@ -68,7 +68,6 @@ theme_override_constants/separation = -104
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(0.99215686, 0.9411765, 0.8352941, 1)
 theme_override_fonts/font = ExtResource("1_fsom3")
 theme_override_font_sizes/font_size = 192
 text = "大蛇"
@@ -78,7 +77,6 @@ justification_flags = 131
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_colors/font_color = Color(1, 0.972549, 0.9137255, 1)
 theme_override_fonts/font = ExtResource("1_fsom3")
 theme_override_font_sizes/font_size = 192
 text = "orochi"
