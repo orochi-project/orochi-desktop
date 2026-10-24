@@ -2,6 +2,11 @@
 
 [ext_resource type="FontFile" uid="uid://bkfafamw1lg85" path="res://assets/fonts/wdxl_lubrifont_jpn/wdxl_lubrifont_jpn_regular.ttf" id="1_fsom3"]
 
+[sub_resource type="Environment" id="Environment_myi6a"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 0
+
 [node name="MainMenu" type="Control" unique_id=705006943]
 layout_mode = 3
 anchors_preset = 15
@@ -10,7 +15,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=797584307]
+[node name="TitleVBoxContainer" type="VBoxContainer" parent="." unique_id=797584307]
+modulate = Color(1.4586968, 1.4586968, 1.4586968, 1)
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -25,7 +31,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = -104
 
-[node name="KanjiTitleLabel" type="Label" parent="VBoxContainer" unique_id=874455886]
+[node name="KanjiTitleLabel" type="Label" parent="TitleVBoxContainer" unique_id=874455886]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
@@ -34,10 +40,13 @@ theme_override_font_sizes/font_size = 192
 text = "大蛇"
 justification_flags = 131
 
-[node name="RomajiTitleLabel" type="Label" parent="VBoxContainer" unique_id=932145211]
+[node name="RomajiTitleLabel" type="Label" parent="TitleVBoxContainer" unique_id=932145211]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_fonts/font = ExtResource("1_fsom3")
 theme_override_font_sizes/font_size = 192
 text = "orochi"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=274927699]
+environment = SubResource("Environment_myi6a")
