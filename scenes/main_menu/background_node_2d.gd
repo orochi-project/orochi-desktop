@@ -1,8 +1,12 @@
 extends Node2D
 
+## The list of parallax mouse strengths.[br]
+## Each item corresponds to a Parallax2D child of the node.
 @export var mouse_strengths: Array[float] = []
-@export var smoothness: float = 5.0
+## The speed at which the object moves to a target position.
+@export var smoothness: float = 0.5
 
+## The child Parallax2D layers to apply the parallax effect to.
 var layers: Array[Parallax2D] = []
 
 
