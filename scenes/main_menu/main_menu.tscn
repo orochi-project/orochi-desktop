@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bimyp0s1n3ttg" path="res://assets/images/backgrounds/main_menu/layer_0001_atmosphere.png" id="6_rrgl4"]
 [ext_resource type="Script" uid="uid://bi0e66duke5ft" path="res://scenes/main_menu/yamata_no_orochi_parallax_2d.gd" id="6_thkx5"]
 [ext_resource type="Texture2D" uid="uid://bogpvr1i6vkgv" path="res://assets/images/backgrounds/main_menu/layer_0000_foreground_clouds.png" id="7_dn3lk"]
+[ext_resource type="Script" uid="uid://by2qblp6n127c" path="res://scenes/main_menu/foreground_clouds_sprite_2d.gd" id="11_lqpn7"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_x2yjq"]
 script = ExtResource("5_x2yjq")
@@ -18,6 +19,25 @@ metadata/_custom_type_script = "uid://byuqmd7wi2o6q"
 [sub_resource type="RichTextEffect" id="RichTextEffect_lqpn7"]
 script = ExtResource("5_x2yjq")
 metadata/_custom_type_script = "uid://byuqmd7wi2o6q"
+
+[sub_resource type="GDScript" id="GDScript_qel0l"]
+script/source = "extends Parallax2D
+
+## Movement speed in pixels per second.
+@export var movement_velocity: float = 60.0
+
+## Width of one image in pixels.
+@export var texture_width: float = 1920.0
+
+
+func _process(delta: float) -> void:
+	position.x += movement_velocity * delta
+
+	if position.x >= texture_width:
+		position.x -= texture_width
+	elif position.x <= -texture_width:
+		position.x += texture_width
+"
 
 [sub_resource type="Environment" id="Environment_myi6a"]
 background_mode = 3
@@ -36,7 +56,7 @@ grow_vertical = 2
 
 [node name="BackgroundNode2D" type="Node2D" parent="." unique_id=2008775116]
 script = ExtResource("1_5seab")
-mouse_strengths = Array[float]([8.0, 12.0, 16.0, 24.0, 32.0, 48.0, 64.0])
+mouse_strengths = Array[float]([8.0, 12.0, 16.0, 24.0, 32.0, 64.0, 128.0])
 
 [node name="SkyParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=24174464]
 
@@ -124,14 +144,16 @@ region_enabled = true
 region_rect = Rect2(-1920, -1080, 5760, 3240)
 
 [node name="ForegroundCloudsParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=429256941]
+script = SubResource("GDScript_qel0l")
 
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/ForegroundCloudsParallax2D" unique_id=1681658798]
-texture_repeat = 3
+texture_repeat = 2
 position = Vector2(-1920, -1080)
 texture = ExtResource("7_dn3lk")
 centered = false
 region_enabled = true
-region_rect = Rect2(-1920, -1080, 5760, 3240)
+region_rect = Rect2(0, 0, 5760, 3240)
+script = ExtResource("11_lqpn7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=274927699]
 environment = SubResource("Environment_myi6a")
