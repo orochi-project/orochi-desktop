@@ -1,12 +1,24 @@
 [gd_scene format=3 uid="uid://bfyicgcqveqmo"]
 
-[ext_resource type="Texture2D" uid="uid://clxlbx5r0phw8" path="res://assets/images/backgrounds/main_menu/layer_0004_sky.png" id="1_3ovsr"]
 [ext_resource type="Script" uid="uid://b7vy56662fenp" path="res://scenes/main_menu/background_node_2d.gd" id="1_5seab"]
 [ext_resource type="FontFile" uid="uid://bkfafamw1lg85" path="res://assets/fonts/wdxl_lubrifont_jpn/wdxl_lubrifont_jpn_regular.ttf" id="1_fsom3"]
-[ext_resource type="Texture2D" uid="uid://cd4lc6b380rsf" path="res://assets/images/backgrounds/main_menu/layer_0003_background_smoke.png" id="4_lqpn7"]
-[ext_resource type="Texture2D" uid="uid://c1x1uk8kcgyeu" path="res://assets/images/backgrounds/main_menu/layer_0002_mountains.png" id="5_qel0l"]
+[ext_resource type="Texture2D" uid="uid://s1kic71wercs" path="res://assets/images/backgrounds/main_menu/layer_0005_sky.png" id="2_5seab"]
+[ext_resource type="Texture2D" uid="uid://vkcistu02y35" path="res://assets/images/backgrounds/main_menu/layer_0004_background_smoke.png" id="3_5seab"]
+[ext_resource type="Texture2D" uid="uid://cmyqag1m6hg3" path="res://assets/images/backgrounds/main_menu/layer_0003_mountains.png" id="5_5seab"]
+[ext_resource type="Script" uid="uid://byuqmd7wi2o6q" path="res://scripts/rich_text_label/random_flicker.gd" id="5_x2yjq"]
+[ext_resource type="Texture2D" uid="uid://ccl7o8mnu0tw1" path="res://assets/images/backgrounds/main_menu/layer_0002_yamata_no_orochi.png" id="6_4xg86"]
 [ext_resource type="Texture2D" uid="uid://bimyp0s1n3ttg" path="res://assets/images/backgrounds/main_menu/layer_0001_atmosphere.png" id="6_rrgl4"]
+[ext_resource type="Script" uid="uid://bi0e66duke5ft" path="res://scenes/main_menu/yamata_no_orochi_parallax_2d.gd" id="6_thkx5"]
 [ext_resource type="Texture2D" uid="uid://bogpvr1i6vkgv" path="res://assets/images/backgrounds/main_menu/layer_0000_foreground_clouds.png" id="7_dn3lk"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_d5sq5"]
+script = ExtResource("5_x2yjq")
+flicker_duration_seconds = 0.09999999999999999
+metadata/_custom_type_script = "uid://byuqmd7wi2o6q"
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_myi6a"]
+script = ExtResource("5_x2yjq")
+metadata/_custom_type_script = "uid://byuqmd7wi2o6q"
 
 [sub_resource type="Environment" id="Environment_myi6a"]
 background_mode = 3
@@ -25,7 +37,7 @@ grow_vertical = 2
 
 [node name="BackgroundNode2D" type="Node2D" parent="." unique_id=2008775116]
 script = ExtResource("1_5seab")
-mouse_strengths = Array[float]([4.0, 8.0, 16.0, 24.0, 32.0, 48.0])
+mouse_strengths = Array[float]([8.0, 12.0, 16.0, 24.0, 32.0, 48.0, 64.0])
 smoothness = 1.0
 
 [node name="SkyParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=24174464]
@@ -33,7 +45,7 @@ smoothness = 1.0
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/SkyParallax2D" unique_id=233159531]
 texture_repeat = 3
 position = Vector2(-1920, -1080)
-texture = ExtResource("1_3ovsr")
+texture = ExtResource("2_5seab")
 centered = false
 region_enabled = true
 region_rect = Rect2(-1920, -1080, 5760, 3240)
@@ -43,7 +55,7 @@ region_rect = Rect2(-1920, -1080, 5760, 3240)
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/BackgroundSmokeParallax2D" unique_id=1481687629]
 texture_repeat = 3
 position = Vector2(-1920, -1080)
-texture = ExtResource("4_lqpn7")
+texture = ExtResource("3_5seab")
 centered = false
 region_enabled = true
 region_rect = Rect2(-1920, -1080, 5760, 3240)
@@ -64,36 +76,48 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_constants/separation = -104
 
-[node name="KanjiTitleLabel" type="Label" parent="BackgroundNode2D/TitleParallax2D/TitleVBoxContainer" unique_id=874455886]
+[node name="TitleKanjiRichTextLabel" type="RichTextLabel" parent="BackgroundNode2D/TitleParallax2D/TitleVBoxContainer" unique_id=917807805]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("1_fsom3")
-theme_override_font_sizes/font_size = 192
-text = "大蛇"
-justification_flags = 131
+theme_override_fonts/normal_font = ExtResource("1_fsom3")
+theme_override_font_sizes/normal_font_size = 192
+bbcode_enabled = true
+text = "[flicker]大蛇[/flicker]"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_d5sq5")]
 
-[node name="RomajiTitleLabel" type="Label" parent="BackgroundNode2D/TitleParallax2D/TitleVBoxContainer" unique_id=932145211]
+[node name="TitleRomajiRichTextLabel2" type="RichTextLabel" parent="BackgroundNode2D/TitleParallax2D/TitleVBoxContainer" unique_id=1159268137]
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("1_fsom3")
-theme_override_font_sizes/font_size = 192
-text = "orochi"
+theme_override_fonts/normal_font = ExtResource("1_fsom3")
+theme_override_font_sizes/normal_font_size = 192
+bbcode_enabled = true
+text = "[flicker]orochi[/flicker]"
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_myi6a")]
 
 [node name="MountainsParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=733701150]
 
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/MountainsParallax2D" unique_id=1232550868]
 texture_repeat = 3
 position = Vector2(-1920, -1080)
-texture = ExtResource("5_qel0l")
+texture = ExtResource("5_5seab")
 centered = false
 region_enabled = true
 region_rect = Rect2(-1920, -1080, 5760, 3240)
 
-[node name="AtmosphereParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=160772828]
+[node name="YamataNoOrochiParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=160772828]
+script = ExtResource("6_thkx5")
 
-[node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/AtmosphereParallax2D" unique_id=1635008927]
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/YamataNoOrochiParallax2D" unique_id=1635008927]
+texture_repeat = 3
+position = Vector2(-1920, -1080)
+texture = ExtResource("6_4xg86")
+centered = false
+region_enabled = true
+region_rect = Rect2(-1920, -1080, 5760, 3240)
+
+[node name="AtmosphereParallax2D2" type="Parallax2D" parent="BackgroundNode2D" unique_id=1324731520]
+
+[node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/AtmosphereParallax2D2" unique_id=878389877]
 texture_repeat = 3
 position = Vector2(-1920, -1080)
 texture = ExtResource("6_rrgl4")
