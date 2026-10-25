@@ -2,7 +2,7 @@
 extends RichTextEffect
 class_name RandomFlickerEffect
 
-var bbcode = "flicker"
+var bbcode: String = "flicker"
 
 ## The color the text should flicker to.
 @export var flicker_color: Color = Color(0.0, 0.0, 0.0)
