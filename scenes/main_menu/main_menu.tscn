@@ -11,12 +11,11 @@
 [ext_resource type="Script" uid="uid://bi0e66duke5ft" path="res://scenes/main_menu/yamata_no_orochi_parallax_2d.gd" id="6_thkx5"]
 [ext_resource type="Texture2D" uid="uid://bogpvr1i6vkgv" path="res://assets/images/backgrounds/main_menu/layer_0000_foreground_clouds.png" id="7_dn3lk"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_d5sq5"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_x2yjq"]
 script = ExtResource("5_x2yjq")
-flicker_duration_seconds = 0.09999999999999999
 metadata/_custom_type_script = "uid://byuqmd7wi2o6q"
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_myi6a"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_lqpn7"]
 script = ExtResource("5_x2yjq")
 metadata/_custom_type_script = "uid://byuqmd7wi2o6q"
 
@@ -83,7 +82,7 @@ theme_override_font_sizes/normal_font_size = 192
 bbcode_enabled = true
 text = "[flicker]大蛇[/flicker]"
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_d5sq5")]
+custom_effects = [SubResource("RichTextEffect_x2yjq")]
 
 [node name="TitleRomajiRichTextLabel2" type="RichTextLabel" parent="BackgroundNode2D/TitleParallax2D/TitleVBoxContainer" unique_id=1159268137]
 layout_mode = 2
@@ -92,7 +91,7 @@ theme_override_font_sizes/normal_font_size = 192
 bbcode_enabled = true
 text = "[flicker]orochi[/flicker]"
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_myi6a")]
+custom_effects = [SubResource("RichTextEffect_lqpn7")]
 
 [node name="MountainsParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=733701150]
 

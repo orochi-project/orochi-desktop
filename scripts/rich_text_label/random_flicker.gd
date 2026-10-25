@@ -1,3 +1,4 @@
+@tool
 extends RichTextEffect
 class_name RandomFlickerEffect
 
