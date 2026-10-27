@@ -46,6 +46,69 @@ glow_strength = 1.25
 glow_blend_mode = 0
 glow_hdr_threshold = 0.0
 
+[sub_resource type="GDScript" id="GDScript_lqpn7"]
+script/source = "extends ScrollContainer
+
+@export var drag_threshold := 10.0  # how much pixels to move until it counts as a drag 
+
+var just_dragged := false
+var _pressing := false
+var _dragging := false
+var _start_x := 0.0
+var _start_scroll := 0
+
+func _input(event: InputEvent) -> void:
+	# checks if left mouse button was either lifted or pressed
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		# if left mouse button was pressed, change variable boolean only if
+		# the click was inside the scroll bar
+		if event.pressed:
+			if get_global_rect().has_point(event.global_position):
+				_pressing = true
+				_dragging = false
+				_start_x = event.global_position.x
+				_start_scroll = scroll_horizontal
+		else:
+			if _dragging:
+				just_dragged = true
+				_clear_just_dragged()
+			_pressing = false
+			_dragging = false
+
+	elif event is InputEventMouseMotion and _pressing:
+		# calculates how far the mouse moved while pressing to determine
+		# whether it passes drag_threshold and counts as a drag
+		var dx: float = event.global_position.x - _start_x
+		if not _dragging and abs(dx) > drag_threshold:
+			_dragging = true
+		if _dragging:
+			scroll_horizontal = _start_scroll - int(dx)
+			get_viewport().set_input_as_handled()
+
+func _clear_just_dragged() -> void:
+	await get_tree().process_frame
+	just_dragged = false
+	
+func _on_play_pressed() -> void:
+	if $Control/ColorRect/ScrollContainer.just_dragged:
+		return
+"
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8sw0"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqpn7"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.07064154, 0.679059, 0.7257284, 1)
+
 [node name="MainMenu" type="Control" unique_id=705006943]
 layout_mode = 3
 anchors_preset = 15
@@ -157,3 +220,132 @@ script = ExtResource("11_lqpn7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=274927699]
 environment = SubResource("Environment_myi6a")
+
+[node name="OptionsNode" type="Control" parent="." unique_id=357540057]
+layout_mode = 1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+offset_transform_position = Vector2(0, -200)
+
+[node name="OptionsColorRect" type="ColorRect" parent="OptionsNode" unique_id=1183880232]
+custom_minimum_size = Vector2(0, 192)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="OptionsScrollBar" type="ScrollContainer" parent="OptionsNode/OptionsColorRect" unique_id=1567759392]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_horizontal_custom_step = 20.0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+scroll_horizontal_by_default = true
+script = SubResource("GDScript_lqpn7")
+
+[node name="OptionsMarginContainer" type="MarginContainer" parent="OptionsNode/OptionsColorRect/OptionsScrollBar" unique_id=163797634]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="OptionsHBox" type="HBoxContainer" parent="OptionsNode/OptionsColorRect/OptionsScrollBar/OptionsMarginContainer" unique_id=866032313]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="Play" type="Button" parent="OptionsNode/OptionsColorRect/OptionsScrollBar/OptionsMarginContainer/OptionsHBox" unique_id=2143660589]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Play"
+
+[node name="Settings" type="Button" parent="OptionsNode/OptionsColorRect/OptionsScrollBar/OptionsMarginContainer/OptionsHBox" unique_id=1448975919]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Settings"
+
+[node name="Community" type="Button" parent="OptionsNode/OptionsColorRect/OptionsScrollBar/OptionsMarginContainer/OptionsHBox" unique_id=455609091]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Community"
+
+[node name="Event" type="Button" parent="OptionsNode/OptionsColorRect/OptionsScrollBar/OptionsMarginContainer/OptionsHBox" unique_id=39961309]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Event"
+
+[node name="Tiers" type="Button" parent="OptionsNode/OptionsColorRect/OptionsScrollBar/OptionsMarginContainer/OptionsHBox" unique_id=316454845]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Tiers
+"
+
+[node name="I" type="Button" parent="OptionsNode/OptionsColorRect/OptionsScrollBar/OptionsMarginContainer/OptionsHBox" unique_id=2135236716]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "I"
+
+[node name="Hate" type="Button" parent="OptionsNode/OptionsColorRect/OptionsScrollBar/OptionsMarginContainer/OptionsHBox" unique_id=2135004978]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Hate"
+
+[node name="Scrolling" type="Button" parent="OptionsNode/OptionsColorRect/OptionsScrollBar/OptionsMarginContainer/OptionsHBox" unique_id=425725625]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Scrolling"
+
+[node name="Logic" type="Button" parent="OptionsNode/OptionsColorRect/OptionsScrollBar/OptionsMarginContainer/OptionsHBox" unique_id=1315749493]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Logic"
+
+[node name="!" type="Button" parent="OptionsNode/OptionsColorRect/OptionsScrollBar/OptionsMarginContainer/OptionsHBox" unique_id=510174939]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "!
+
+"
