@@ -1,17 +1,17 @@
 extends Parallax2D
 
+## Determines which anchor type to use.
+enum Anchor {
+	LEFT,  ## Anchors to the left side.
+	RIGHT,  ## Anchors to the right side.
+}
+
 ## The speed at which the object rotates to a target angle.
 @export var smoothness: float = 2.0
 ## The maximum number of degrees the object can rotate before being clamped.
 @export var max_rotation_degrees: float = 2.0
 ## The side of the screen on which the sensor is placed.
 @export var anchor: Anchor = Anchor.LEFT
-
-## Determines which anchor type to use.
-enum Anchor {
-	LEFT, ## Anchors to the left side.
-	RIGHT, ## Anchors to the right side.
-}
 
 
 func _process(delta: float) -> void:
