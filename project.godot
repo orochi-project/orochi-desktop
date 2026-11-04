@@ -28,7 +28,11 @@ project/assembly_name="orochi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
+enabled=PackedStringArray("res://addons/simple_gdscript_formatter/plugin.cfg")
+
+[gui]
+
+common/snap_controls_to_pixels=false
 
 [physics]
 

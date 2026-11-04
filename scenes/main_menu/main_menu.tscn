@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://bi0e66duke5ft" path="res://scenes/main_menu/yamata_no_orochi_parallax_2d.gd" id="6_thkx5"]
 [ext_resource type="Texture2D" uid="uid://bogpvr1i6vkgv" path="res://assets/images/backgrounds/main_menu/layer_0000_foreground_clouds.png" id="7_dn3lk"]
 [ext_resource type="Script" uid="uid://by2qblp6n127c" path="res://scenes/main_menu/foreground_clouds_sprite_2d.gd" id="11_lqpn7"]
+[ext_resource type="Script" uid="uid://du6hmbcvughrh" path="res://scenes/main_menu/options_scroll_container.gd" id="12_qel0l"]
 
 [sub_resource type="RichTextEffect" id="RichTextEffect_x2yjq"]
 script = ExtResource("5_x2yjq")
@@ -45,6 +46,21 @@ glow_enabled = true
 glow_strength = 1.25
 glow_blend_mode = 0
 glow_hdr_threshold = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8sw0"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lqpn7"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.07064154, 0.679059, 0.7257284, 1)
 
 [node name="MainMenu" type="Control" unique_id=705006943]
 layout_mode = 3
@@ -157,3 +173,96 @@ script = ExtResource("11_lqpn7")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=274927699]
 environment = SubResource("Environment_myi6a")
+
+[node name="OptionsColorRect" type="ColorRect" parent="." unique_id=1183880232]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 768.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.5882353)
+
+[node name="OptionsScrollContainer" type="ScrollContainer" parent="OptionsColorRect" unique_id=2077391559]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scroll_horizontal_custom_step = 20.0
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+scroll_horizontal_by_default = true
+script = ExtResource("12_qel0l")
+
+[node name="OptionsMarginContainer" type="MarginContainer" parent="OptionsColorRect/OptionsScrollContainer" unique_id=163797634]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="OptionsHBoxContainer" type="HBoxContainer" parent="OptionsColorRect/OptionsScrollContainer/OptionsMarginContainer" unique_id=866032313]
+layout_mode = 2
+theme_override_constants/separation = 100
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="OptionsColorRect/OptionsScrollContainer/OptionsMarginContainer/OptionsHBoxContainer" unique_id=2143660589]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="OptionsColorRect/OptionsScrollContainer/OptionsMarginContainer/OptionsHBoxContainer" unique_id=1448975919]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Settings"
+
+[node name="CommunityButton" type="Button" parent="OptionsColorRect/OptionsScrollContainer/OptionsMarginContainer/OptionsHBoxContainer" unique_id=455609091]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Community"
+
+[node name="EventButton" type="Button" parent="OptionsColorRect/OptionsScrollContainer/OptionsMarginContainer/OptionsHBoxContainer" unique_id=39961309]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Event"
+
+[node name="TiersButton" type="Button" parent="OptionsColorRect/OptionsScrollContainer/OptionsMarginContainer/OptionsHBoxContainer" unique_id=316454845]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Tiers
+"
+
+[node name="ShopButton" type="Button" parent="OptionsColorRect/OptionsScrollContainer/OptionsMarginContainer/OptionsHBoxContainer" unique_id=1081112038]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Shop"
+
+[node name="StudioButton" type="Button" parent="OptionsColorRect/OptionsScrollContainer/OptionsMarginContainer/OptionsHBoxContainer" unique_id=1603582588]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_fsom3")
+theme_override_font_sizes/font_size = 75
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8sw0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lqpn7")
+text = "Studio"
