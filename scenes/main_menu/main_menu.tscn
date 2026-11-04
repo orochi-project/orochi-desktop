@@ -21,25 +21,6 @@ metadata/_custom_type_script = "uid://byuqmd7wi2o6q"
 script = ExtResource("5_x2yjq")
 metadata/_custom_type_script = "uid://byuqmd7wi2o6q"
 
-[sub_resource type="GDScript" id="GDScript_qel0l"]
-script/source = "extends Parallax2D
-
-## Movement speed in pixels per second.
-@export var movement_velocity: float = 60.0
-
-## Width of one image in pixels.
-@export var texture_width: float = 1920.0
-
-
-func _process(delta: float) -> void:
-	position.x += movement_velocity * delta
-
-	if position.x >= texture_width:
-		position.x -= texture_width
-	elif position.x <= -texture_width:
-		position.x += texture_width
-"
-
 [sub_resource type="Environment" id="Environment_myi6a"]
 background_mode = 3
 glow_enabled = true
@@ -160,7 +141,6 @@ region_enabled = true
 region_rect = Rect2(-1920, -1080, 5760, 3240)
 
 [node name="ForegroundCloudsParallax2D" type="Parallax2D" parent="BackgroundNode2D" unique_id=429256941]
-script = SubResource("GDScript_qel0l")
 
 [node name="Sprite2D" type="Sprite2D" parent="BackgroundNode2D/ForegroundCloudsParallax2D" unique_id=1681658798]
 texture_repeat = 2
